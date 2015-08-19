@@ -27,9 +27,6 @@ $ httpserver 8080
 # Python 2.x or 3.x
 $ httpserver python 8080
 
-# Python 2.x
-$ httpserver python2 8080
-
 # Python 3.x
 $ httpserver python3 8080
 
