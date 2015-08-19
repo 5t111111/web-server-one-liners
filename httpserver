@@ -1,0 +1,117 @@
+#!/bin/sh
+
+######################################################
+# HTTP server one-liner
+######################################################
+
+expr $1 + 1 >/dev/null 2>&1
+if [ $? -lt 2 ] ; then
+  PROGRAM=python
+  PORT=$1
+else
+  PROGRAM=$1
+  PORT=$2
+fi
+
+usage() {
+  cat << EOT
+Run one of the following http server
+- Python 2.x SimpleHTTPServer
+- Python 3.x http.server
+- Ruby WEBRick via un
+- PHP (5.4+)
+
+Usage:
+$ httpserver PROGRAM PORT_NUMBER
+
+Example:
+# Default (Python 2.x or 3.x) using default port number
+$ httpserver
+# Default (Python 2.x or 3.x) with an explicit port number
+$ httpserver 8080
+# Python 2.x or 3.x
+$ httpserver python 8080
+# Python 2.x
+$ httpserver python2 8080
+# Python 3.x
+$ httpserver python3 8080
+# Ruby
+$ httpserver ruby 8080
+# PHP
+$ httpserver php 8080
+EOT
+}
+
+serve_python() {
+  PYTHON_VERSION=`python -V 2>&1 >/dev/null | cut -b8`
+  if [ $PYTHON_VERSION -eq 2 ] ; then
+    serve_python2
+  elif [ $PYTHON_VERSION -eq 3 ] ; then
+    serve_python3
+  else
+    echo "Python is not installed." 1>&2
+  fi
+}
+
+serve_python2() {
+  python -m SimpleHTTPServer $PORT
+}
+
+serve_python3() {
+  PYTHON_VERSION=`python -V 2>&1 >/dev/null | cut -b8`
+  if [ $PYTHON_VERSION -eq 3 ] ; then
+    python -m http.server $PORT
+  else
+    python3 -m http.server $PORT
+  fi
+}
+
+serve_ruby() {
+  expr ${PORT} + 1 >/dev/null 2>&1
+  if [ $? -lt 2 ] ; then
+    ruby -run -e httpd . -p $PORT
+  else
+    ruby -run -e httpd .
+  fi
+}
+
+serve_php() {
+  PHP_VERSION_MAJOR=`php -v | head -1 | cut -b5`
+  PHP_VERSION_MINOR=`php -v | head -1 | cut -b7`
+
+  if [ $PHP_VERSION_MAJOR -lt 2 ] ; then
+    echo "PHP version must be greater than or equal to 5.4" 1>&2
+    return
+  fi
+
+  if [ $PHP_VERSION_MINOR -lt 4 ] ; then
+    echo "PHP version must be greater than or equal to 5.4" 1>&2
+    return
+  fi
+
+  expr ${PORT} + 1 >/dev/null 2>&1
+  if [ $? -lt 2 ] ; then
+    php -S 0.0.0.0:${PORT}
+  else
+    echo "Port number must be specified" 1>&2
+  fi
+}
+
+case ${PROGRAM} in
+  "-h" )
+    usage ;;
+  "--help" )
+    usage ;;
+  "" )
+    serve_python ;;
+  "python" )
+    serve_python ;;
+  "python3" )
+    serve_python3 ;;
+  "ruby" )
+    serve_ruby ;;
+  "php" )
+    serve_php ;;
+  * )
+    usage ;;
+esac
