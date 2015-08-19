@@ -1,6 +1,6 @@
 # HTTP Server One-liner
 
-This is a wrapper script for the following http servers to launch an instant web server on the fly.
+This is a wrapper script for the following one-liner http servers to launch an instant web server on the fly.
 
 - Python 2.x SimpleHTTPServer
 - Python 3.x http.server
