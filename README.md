@@ -1,10 +1,10 @@
 # HTTP Server One-liner
 
-Helps you to run one of the following http server:
+This is a wrapper script for the following http servers to launch an instant web server on the fly.
 
 - Python 2.x SimpleHTTPServer
 - Python 3.x http.server
-- Ruby WEBRick via un
+- Ruby WEBrick via un
 - PHP (5.4+)
 
 Default is Python 2.x or 3.x depends on your environment.
