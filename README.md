@@ -1,6 +1,6 @@
-# HTTP Server One-liner
+# Web Server One-liners
 
-This is a wrapper script for the following one-liner http servers to launch an instant web server on the fly.
+This is a wrapper script for launching one of the following an ad hoc http static servers to launch an instant web server on the fly.
 
 - Python 2.x SimpleHTTPServer
 - Python 3.x http.server
@@ -12,29 +12,29 @@ Default is Python 2.x or 3.x depends on your environment.
 ## Usage
 
 ```text
-$ httpserver PROGRAM PORT_NUMBER
+$ webserver PROGRAM PORT_NUMBER
 ```
 
 ### Example
 
 ```bash
 # Default (Python 2.x or 3.x) using default port number
-$ httpserver
+$ webserver
 
 # Default (Python 2.x or 3.x) with an explicit port number
-$ httpserver 8080
+$ webserver 8080
 
 # Python 2.x or 3.x
-$ httpserver python 8080
+$ webserver python 8080
 
 # Python 3.x
-$ httpserver python3 8080
+$ webserver python3 8080
 
 # Ruby
-$ httpserver ruby 8080
+$ webserver ruby 8080
 
 # PHP
-$ httpserver php 8080
+$ webserver php 8080
 ```
 
 ## Installation

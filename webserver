@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ######################################################
-# HTTP server one-liner
+# Web Server one-liners
 ######################################################
 
 expr $1 + 1 >/dev/null 2>&1
@@ -15,28 +15,29 @@ fi
 
 usage() {
   cat << EOT
-Run one of the following http server
+This is a wrapper script for launching one of the following an ad hoc http static servers to launch an instant web server on the fly.
+
 - Python 2.x SimpleHTTPServer
 - Python 3.x http.server
 - Ruby WEBRick via un
 - PHP (5.4+)
 
 Usage:
-$ httpserver PROGRAM PORT_NUMBER
+$ webserver PROGRAM PORT_NUMBER
 
 Example:
 # Default (Python 2.x or 3.x) using default port number
-$ httpserver
+$ webserver
 # Default (Python 2.x or 3.x) with an explicit port number
-$ httpserver 8080
+$ webserver 8080
 # Python 2.x or 3.x
-$ httpserver python 8080
+$ webserver python 8080
 # Python 3.x
-$ httpserver python3 8080
+$ webserver python3 8080
 # Ruby
-$ httpserver ruby 8080
+$ webserver ruby 8080
 # PHP
-$ httpserver php 8080
+$ webserver php 8080
 EOT
 }
 
