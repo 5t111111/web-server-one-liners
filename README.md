@@ -49,3 +49,11 @@ $ git clone git@github.com:5t111111/http-server-one-liner.git
 $ export PATH=$HOME/http-server-one-liner/bin:$PATH
 $ rehash # optional
 ```
+
+Or you can install via Homebrew.
+
+```text
+$ brew tap 5t111111/web-server-one-liners
+$ brew update
+$ brew install web-server-one-liners
+```
