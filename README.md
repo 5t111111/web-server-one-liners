@@ -46,6 +46,6 @@ Clone this repository (or just download the script file) to any location and add
 ```text
 $ cd ~
 $ git clone git@github.com:5t111111/http-server-one-liner.git
-$ export PATH=$HOME/http-server-one-liner:$PATH
+$ export PATH=$HOME/http-server-one-liner/bin:$PATH
 $ rehash # optional
 ```
