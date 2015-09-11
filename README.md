@@ -6,6 +6,7 @@ This is a wrapper script for launching one of the following an ad hoc http stati
 - Python 3.x http.server
 - Ruby WEBrick via un
 - PHP (5.4+)
+- node-static (Node.js: node-static is required)
 
 Default is Python 2.x or 3.x depends on your environment.
 
@@ -35,6 +36,9 @@ $ webserver ruby 8080
 
 # PHP
 $ webserver php 8080
+
+# node-static
+$ webserver static 8080
 ```
 
 ## Installation

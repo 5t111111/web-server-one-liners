@@ -21,6 +21,7 @@ This is a wrapper script for launching one of the following an ad hoc http stati
 - Python 3.x http.server
 - Ruby WEBRick via un
 - PHP (5.4+)
+- node-static (Node.js: node-static is required)
 
 Usage:
 $ webserver PROGRAM PORT_NUMBER
@@ -38,6 +39,8 @@ $ webserver python3 8080
 $ webserver ruby 8080
 # PHP
 $ webserver php 8080
+# node-static
+$ webserver static 8080
 EOT
 }
 
@@ -96,6 +99,23 @@ serve_php() {
   fi
 }
 
+serve_node_static() {
+  if ! type "static" > /dev/null 2>&1 ; then
+    cat << EOT
+Missing Dependency: node-static is required.
+You can install it as follows if you have already installed Node.
+
+$ npm install -g node-static
+EOT
+    return
+  fi
+  if [ $? -lt 2 ] ; then
+    static -p $PORT
+  else
+    static
+  fi
+}
+
 case ${PROGRAM} in
   "-h" )
     usage ;;
@@ -111,6 +131,8 @@ case ${PROGRAM} in
     serve_ruby ;;
   "php" )
     serve_php ;;
+  "static" )
+    serve_node_static ;;
   * )
     usage ;;
 esac
